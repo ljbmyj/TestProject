@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insertdom</title>
+    
+</head>
+<body>
+    <script type="text/javascript">
+        var h1 = document.createElement("h1");
+        h1.innerText = '学习';    
+        document.body.appendChild(h1);
+
+        /* 动态创建了一个style 添加到head的末尾 */
+        var d = document.createElement('style');
+        d.setAttribute('type', 'text/css');
+        d.innerHTML = 'p{color:red}';
+        document.getElementsByTagNameN('head')[0].appendChild(d);
+
+        /* 对于一个已有的HTML结构：
+        Scheme
+        JavaScript
+        Python
+        Ruby
+        Haskell
+        html结构
+        <ol id="test-list">
+        <li class="lang">Scheme</li>
+        <li class="lang">JavaScript</li>
+        <li class="lang">Python</li>
+        <li class="lang">Ruby</li>
+        <li class="lang">Haskell</li>
+        </ol>
+        按字符串顺序重新排序DOM节点：*/
+        var arr = [];
+        var list = document.getElementById('lis')
+        for(let i = 0;i<list.children.length;i++){
+            arr.push(list.children[i].innerText);/* 使用push方法添加数组 */
+        }
+        arr.sort();
+        for(let i = 0;i<list.children.length;i++){
+            list.children[i].innerText = arr[i];
+        }
+        
+        var children_arr = [...document.getElementById('text-list').children]
+        var sorted = children_arr.map(function(x){
+            return x.innerText}).sort()/* 用map方法 */
+        children_arr.map((x,i)=>{x.innerText=sorted[i];})
+
+    </script>
+</body>
+</html>
